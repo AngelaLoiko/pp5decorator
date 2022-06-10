@@ -1,8 +1,8 @@
 from functools import wraps
 import time
 
-def logged(log_file_path):
-    file_path =  log_file_path
+def logged(log_dir):
+    file_path =  log_dir
     
     def _logged(old_function):
     
