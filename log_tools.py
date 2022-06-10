@@ -1,5 +1,5 @@
 from functools import wraps
-import time
+import datetime
 
 def logged(log_dir):
     file_path =  log_dir
@@ -8,10 +8,9 @@ def logged(log_dir):
     
         @wraps(old_function)
         def new_function(*args, **kwargs):
-            start_date = time.date()
-            start_time = time.time()
+            dt = datetime.datetime.now()
             result = old_function(*args, **kwargs)
-            str_log = f'Дата и время вызова функции {start_date} {start_time}, \
+            str_log = f'Дата и время вызова функции {dt}, \
             имя функции:{old_function.__name__}, c аргументами: {args} и {kwargs}, получен результат {result}'
             with open(file_path + 'logs.txt', 'a') as f:
                 f.write(str_log + '\n')
